@@ -60,14 +60,24 @@ class App extends Component {
           id: "10",
           email: "clementina.dubuque@mail.com"
         }
-      ]
+      ],
+      searchField: ''
     };
   }
 
   render() {
+    // Destructuring
+    const { monsters, searchField } = this.state;
+    // Line 70 is equivalent to the below
+    // const monsters = this.state.monsters;
+    // const searchField = this.state.searchField;
+    const filteredMonsters = monsters.filter(
+      monster => monster.name.toLowerCase().includes(searchField.toLowerCase())
+    )
     return (
       <div className="App">
-        <CardList monsters={this.state.monsters} />
+        <input type='search' placeholder='Search Monsters' onChange={e => this.setState({ searchField: e.target.value }, () => console.log(this.state))} />
+        <CardList monsters={filteredMonsters} />
       </div>
     )
   }

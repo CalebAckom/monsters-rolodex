@@ -66,6 +66,10 @@ class App extends Component {
     };
   }
 
+  handleChange = (e) => {
+    this.setState({ searchField: e.target.value })
+  };
+
   render() {
     // Destructuring
     const { monsters, searchField } = this.state;
@@ -79,7 +83,7 @@ class App extends Component {
       <div className="App">
         <SearchBox
           placeholder='Search Monsters'
-          handleChange={e => this.setState({ searchField: e.target.value })}
+          handleChange={this.handleChange}
         />
         <CardList monsters={filteredMonsters} />
       </div>

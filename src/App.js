@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { CardList } from './components/card-list/card-list';
+import { SearchBox } from './components/search-box/search-box';
 import './App.css';
 
 // Using a class component, we get access to State
@@ -76,7 +77,10 @@ class App extends Component {
     )
     return (
       <div className="App">
-        <input type='search' placeholder='Search Monsters' onChange={e => this.setState({ searchField: e.target.value }, () => console.log(this.state))} />
+        <SearchBox
+          placeholder='Search Monsters'
+          handleChange={e => this.setState({ searchField: e.target.value })}
+        />
         <CardList monsters={filteredMonsters} />
       </div>
     )

@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: monsters-rolodex
+  labels:
+    app: monsters-rolodex
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: monsters-rolodex
+  template:
+    metadata:
+      labels:
+        app: monsters-rolodex
+    spec:
+      containers:
+        - name: monsters-rolodex
+          image: <docker-image>
+          imagePullPolicy: Always
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "8240Mi"
+              cpu: "250m"
+          ports:
+            - containerPort: 3000

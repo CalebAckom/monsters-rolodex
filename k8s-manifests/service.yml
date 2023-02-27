@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name:
+  labels:
+    run: monsters-rolodex
+spec:
+  ports:
+    - port: 3000
+      protocol: TCP
+  selector:
+    run: monsters-rolodex

@@ -57,7 +57,7 @@ class App extends Component {
           email: "glenna.reichert@mail.com"
         },
         {
-          name: "Clementina DuBuque",
+          name: "Clement DuBuque",
           id: "10",
           email: "clementina.dubuque@mail.com"
         }

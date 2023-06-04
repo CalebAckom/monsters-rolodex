@@ -13,7 +13,6 @@ jobs:
       - name: Extract branch name
         id: branch-name
         run: |
-          # branch=$(git branch --show-current)
           echo "{branch}={$(git branch --show-current)}" >> $GITHUB_OUTPUT
 
       - name: Print branch name

@@ -1,0 +1,19 @@
+version: '3.3'
+
+services:
+  monsters:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    # container_name: monsters-rolodex
+    # ports:
+    #   - 3001:3000
+    #   # - 3002:3000
+    #   # - 3003:3000
+    volumes:
+      - ./:/app/
+
+  # proxy:
+  #   image: nginx:latest
+  #   # ports:
+  #   #   - "8080:8080"

@@ -17,4 +17,4 @@ jobs:
           echo "::set-output name=branch::$branch"
 
       - name: Print branch name
-        run: echo "Branch: ${{ steps.branch-name.outputs.branch }}"
+        run: echo "Branch:${{ steps.branch-name.outputs.branch }}"

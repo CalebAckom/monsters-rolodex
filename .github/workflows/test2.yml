@@ -1,0 +1,17 @@
+name: Destroy Env
+
+on: 
+  pull_request:
+    types:  [closed]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Print branch name
+        run: echo "My name is Caleb"
+        

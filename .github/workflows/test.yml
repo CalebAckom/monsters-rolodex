@@ -13,8 +13,7 @@ jobs:
       - name: Extract branch name
         id: branch-name
         run: |
-          branch=$(git branch --show-current)
-          echo "::set-output name=branch::$branch"
+          echo "::set-output name=branch::$(git branch --show-current)"
 
       - name: Print branch name
         run: echo "Branch:${{ steps.branch-name.outputs.branch }}"

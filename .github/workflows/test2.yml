@@ -1,8 +1,7 @@
 name: Destroy Env
 
 on: 
-  pull_request:
-    types:  [closed]
+  pull_request
 
 jobs:
   build:
@@ -10,8 +9,5 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Print branch name
-        run: echo "My name is Caleb"
+        uses: ./.github/workflows/test.yml
         

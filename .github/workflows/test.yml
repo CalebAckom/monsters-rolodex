@@ -17,5 +17,5 @@ jobs:
           echo "::set-output branch={branch}=${{ github.event.pull_request.head.ref }}"
 
       - name: Print branch name
-        run: echo "Branch:${{ steps.branch-name.outputs.branch }}"
+        run: echo "Branch:${{ github.event.pull_request.head.ref }}"
         

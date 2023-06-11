@@ -14,4 +14,4 @@ jobs:
         run: |
           git push origin -d ${{ github.head_ref }}
         with:
-          token:  ${{ secrets.GITHUB_TOKEN }}
+          token:  ${{ secrets.MY_GITHUB_TOKEN }}

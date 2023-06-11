@@ -1,0 +1,15 @@
+name: Delete branch after PR
+on:
+  pull_request:
+    types:
+      - closed
+
+jobs:
+  delete-branch:
+    if: github.head_ref != 'develop' && github.head_ref != 'staging'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Delete branch
+        run: |
+          git branch -D ${{ github.head_ref }}

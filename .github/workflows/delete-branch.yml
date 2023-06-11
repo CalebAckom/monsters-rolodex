@@ -13,3 +13,5 @@ jobs:
       - name: Delete branch
         run: |
           git push origin -d ${{ github.head_ref }}
+        with:
+          token:  ${{ secrets.GITHUB_TOKEN }}

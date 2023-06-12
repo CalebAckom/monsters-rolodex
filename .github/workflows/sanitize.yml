@@ -20,4 +20,4 @@ jobs:
 
       - name: Print name
         run: |
-          echo "$sanitized_branch"
+          echo "${{ steps.sanitized-branch.outputs.sanitized_branch }}"

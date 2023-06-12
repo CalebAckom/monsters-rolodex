@@ -20,4 +20,4 @@ jobs:
 
       - name: Print name
         run: |
-          echo "$sanitized_name"
+          echo "$sanitized_branch"

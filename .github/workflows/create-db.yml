@@ -28,10 +28,11 @@ jobs:
 #          sudo apt-get install -y mongocli
 
       - name: MongoDB
-        uses: mongodb-atlas/atlas@v1
+        uses: mongodb/mongodb-atlas
         with:
           apiKey: ${{ secrets.MONGODB_API_KEY }}
           databaseName: test
+          clusterName:  Cluster0
 
 #      - name: Deploy MongoDB
 #        run:  mongo atlas create --apiKey ${{ secrets.MONGODB_API_KEY }} --databaseName test

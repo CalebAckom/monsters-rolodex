@@ -1,0 +1,22 @@
+name: Create New DB
+
+on: push
+
+jobs:
+  create-db:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16.x
+
+      - name: Install dependencies
+        run:  npm install
+
+      - name: Deploy MongoDB
+        run:  mongo atlas create --apiKey ${{ secrets.MONGODB_API_KEY }} --databaseName test

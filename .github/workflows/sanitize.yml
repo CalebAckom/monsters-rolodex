@@ -17,3 +17,7 @@ jobs:
           sanitized_name=$(echo $branch_name | sed -e 's/[^a-zA-Z0-9-]/-/g')
           echo "Sanitized branch name: $sanitized_name"
           echo "::set-output name=sanitized_branch::$sanitized_name"
+
+      - name: Print name
+        run: |
+          echo "$sanitized name"

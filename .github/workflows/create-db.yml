@@ -18,21 +18,37 @@ jobs:
       - name: Install dependencies
         run:  npm install
 
-#      - name: Install Mongo
-#        run: |
-#          sudo apt update
-#          sudo apt-get install gnupg
-#          wget -qO - https://www.mongodb.org/static/pgp/server-6.0.asc | sudo apt-key add -
-#          echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/6.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-6.0.list
-#          sudo apt-get update
-#          sudo apt-get install -y mongocli
+      - name: Install Mongo
+        run: |
+          sudo apt update
+          sudo apt-get install gnupg
+          wget -qO - https://www.mongodb.org/static/pgp/server-6.0.asc | sudo apt-key add -
+          echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/6.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-6.0.list
+          sudo apt-get update
+          sudo apt-get install -y mongocli mongodb-org-shell
 
-      - name: MongoDB
-        uses: supercharge/mongodb-github-action@1.8.0
+#      - name: MongoDB
+#        uses: supercharge/mongodb-github-action@1.8.0
 #        with:
 #          apiKey: ${{ secrets.MONGODB_API_KEY }}
 #          databaseName: test
 #          clusterName:  Cluster0
 
       - name: Deploy MongoDB
-        run:  mongo atlas create --apiKey ${{ secrets.MONGODB_API_KEY }} --databaseName test
+        env:
+          MONGODB_USERNAME: ${{ secrets.MONGODB_USERNAME }}
+          MONGODB_PASSWORD: ${{ secrets.MONGODB_PASSWORD }}
+          MONGODB_CLUSTER_URL:  ${{ secrets.MONGODB_CLUSTER_URL }}
+          DATABASE_NAME:  test
+        run:  |
+#          mongo atlas create --apiKey ${{ secrets.MONGODB_API_KEY }} --databaseName test
+          mongo "${MONGODB_CLUSTER_URL} << EOF
+          use admin
+          db.auth("${MONGODB_USERNAME}", "${MONGODB_PASSWORD}")
+          use ${DATABASE_NAME}
+          db.createUser({
+                user: "${MONGODB_USERNAME}",
+                pwd:  "${MONGODB_PASSWORD}",
+                roles:  [{ role: "readWrite", db: "${DATABASE_NAME}"}]
+          });
+          EOF

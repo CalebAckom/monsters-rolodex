@@ -28,7 +28,7 @@ jobs:
 #          sudo apt-get install -y mongocli
 
       - name: MongoDB
-        uses: mongodb/mongodb-atlas
+        uses: mongodb/mongodb-atlas@v1
         with:
           apiKey: ${{ secrets.MONGODB_API_KEY }}
           databaseName: test

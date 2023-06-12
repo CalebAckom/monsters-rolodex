@@ -34,5 +34,5 @@ jobs:
 #          databaseName: test
 #          clusterName:  Cluster0
 
-#      - name: Deploy MongoDB
-#        run:  mongo atlas create --apiKey ${{ secrets.MONGODB_API_KEY }} --databaseName test
+      - name: Deploy MongoDB
+        run:  mongo atlas create --apiKey ${{ secrets.MONGODB_API_KEY }} --databaseName test

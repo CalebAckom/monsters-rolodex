@@ -20,4 +20,4 @@ jobs:
 
       - name: Print name
         run: |
-          echo "$sanitized name"
+          echo "$sanitized_name"

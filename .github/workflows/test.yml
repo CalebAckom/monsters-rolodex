@@ -1,22 +1,22 @@
-name: Deploy Env
-
-on:
-  workflow_call
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Extract branch name
-        id: branch-name
-        run: |
-          
-          echo "::set-output branch={branch}=${{ github.event.pull_request.head.ref }}"
-
-      - name: Print branch name
-        run: echo "Branch:${{ github.event.pull_request.head.ref }}"
-        
+#name: Deploy Env
+#
+#on:
+#  workflow_call
+#
+#jobs:
+#  build:
+#    runs-on: ubuntu-latest
+#
+#    steps:
+#      - name: Checkout repository
+#        uses: actions/checkout@v3
+#
+#      - name: Extract branch name
+#        id: branch-name
+#        run: |
+#
+#          echo "::set-output branch={branch}=${{ github.event.pull_request.head.ref }}"
+#
+#      - name: Print branch name
+#        run: echo "Branch:${{ github.event.pull_request.head.ref }}"
+#

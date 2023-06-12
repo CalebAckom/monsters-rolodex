@@ -42,7 +42,7 @@ jobs:
           DATABASE_NAME:  test
         run:  |
 #          mongo atlas create --apiKey ${{ secrets.MONGODB_API_KEY }} --databaseName test
-          mongo "${MONGODB_CLUSTER_URL} << EOF
+          mongo "${MONGODB_CLUSTER_URL}" << EOF
           use admin
           db.auth("${MONGODB_USERNAME}", "${MONGODB_PASSWORD}")
           use ${DATABASE_NAME}

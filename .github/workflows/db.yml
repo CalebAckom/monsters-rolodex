@@ -51,6 +51,6 @@ jobs:
       - name: Get connection string
         run: |
           sleep 60
-          atlas cluster connectionString describe Cluster0 --output json
-          sleep 30
-          atlas cluster connectionString describe Cluster0 --output json
+          output=$(atlas cluster connectionString describe Cluster0 --output json)
+          mongo_uri=$(echo "$output" | jq -r '.standardSrv')
+          echo "$mongo_uri"

@@ -17,17 +17,17 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install gnupg
-          wget -qO - https://www.mongodb.org/static/pgp/server-6.0.asc | sudo apt-key add -
+          wget -qO - https://pgp.mongodb.com/server-6.0.asc | sudo apt-key add -
           echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/6.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-6.0.list
           sudo apt-get update
-          sudo apt-get install -y mongocli
+          sudo apt-get install -y mongodb-atlas
 
       - name: Configure MongoDB CLI
         run: |
-          mongocli config set org_id ${{ secrets.MONGODB_ORG_ID }}
-          mongocli config set project_id ${{ secrets.MONGODB_PROJECT_ID_NEW }}
-          mongocli config set public_api_key "${{ secrets.MONGODB_PUBLIC_API_KEY }}"
-          mongocli config set private_api_key "${{ secrets.MONGODB_PRIVATE_KEY }}"
+          config set org_id ${{ secrets.MONGODB_ORG_ID }}
+          config set project_id ${{ secrets.MONGODB_PROJECT_ID_NEW }}
+          config set public_api_key "${{ secrets.MONGODB_PUBLIC_API_KEY }}"
+          config set private_api_key "${{ secrets.MONGODB_PRIVATE_KEY }}"
 #          mongocli config set serviceConnectionURI "${{ secrets.MONGODB_URI_NEW }}"
 
 #      - name: Create Project

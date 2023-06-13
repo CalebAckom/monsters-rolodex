@@ -38,7 +38,7 @@ jobs:
 #          projectId=$(cat project.json | jq -r .projectId)
 
       - name: Create database
-        run: atlas cluster create NewTest --projectId ${{ secrets.MONGODB_PROJECT_ID_NEW }} --provider AWS --region US_EAST_1 --tier M0
+        run: atlas cluster create NewTest --projectId ${{ secrets.MONGODB_PROJECT_ID_NEW }} --provider AWS --region US_EAST_1 --tier M0 --output json
 
       - name: Verify database creation
         run: atlas clusters list --projectId ${{ secrets.MONGODB_PROJECT_ID_NEW }} --output json

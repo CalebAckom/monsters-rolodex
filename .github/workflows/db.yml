@@ -27,10 +27,11 @@ jobs:
 
       - name: Configure MongoDB CLI
         run: |
-          mongocli config set projectID ${{ secrets.MONGODB_PROJECT_ID_NEW }}
-          mongocli config set publicAPIKey "${{ secrets.MONGODB_PUBLIC_API_KEY }}"
-          mongocli config set privateKey "${{ secrets.MONGODB_PRIVATE_KEY }}"
-          mongocli config set serviceConnectionURI "${{ secrets.MONGODB_URI_NEW }}"
+          mongocli config set org_id ${{ secrets.MONGODB_ORG_ID }}
+          mongocli config set project_id ${{ secrets.MONGODB_PROJECT_ID_NEW }}
+          mongocli config set public_api_key "${{ secrets.MONGODB_PUBLIC_API_KEY }}"
+          mongocli config set private_api_key "${{ secrets.MONGODB_PRIVATE_KEY }}"
+#          mongocli config set serviceConnectionURI "${{ secrets.MONGODB_URI_NEW }}"
 
       - name: Create database
         run: mongocli atlas cluster db create --clusterName Test --dbName mydatabase

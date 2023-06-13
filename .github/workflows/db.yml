@@ -52,3 +52,5 @@ jobs:
         run: |
           sleep 60
           atlas cluster connectionString describe Cluster0 --output json
+          sleep 30
+          atlas cluster connectionString describe Cluster0 --output json

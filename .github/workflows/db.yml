@@ -18,9 +18,9 @@ jobs:
 ##        with:
 ##          mongodb-uri: ${{ secrets.MONGODB_URI }}
         run: |
-          curl -OL https://downloads.mongodb.com/on-prem-mongodb/binaries/linux/mongocli-latest-linux-x86_64.tgz
-          tar -xzf mongocli-latest-linux-x86_64.tgz
-          sudo cp mongocli*/mongocli /usr/local/bin/
+          curl -LO https://downloads.mongodb.com/on-prem-mongodb/binaries/linux/mongocli-latest-linux-x86_64
+          sudo chmod +x mongocli-latest-linux-x86_64
+          sudo mv mongocli-latest-linux-x86_64 /usr/local/bin/mongocli
 
       - name: Configure MongoDB CLI
         run: |

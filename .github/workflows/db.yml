@@ -38,11 +38,11 @@ jobs:
 #          projectId=$(cat project.json | jq -r .projectId)
 
       - name: Create database
-        run: mongocli atlas cluster create NewTest --projectId ${{ secrets.MONGODB_PROJECT_ID_NEW }} --provider AWS --region US_EAST_1 --tier M0
+        run: atlas cluster create NewTest --projectId ${{ secrets.MONGODB_PROJECT_ID_NEW }} --provider AWS --region US_EAST_1 --tier M0
 
       - name: Verify database creation
-        run: mongocli atlas clusters list --projectId ${{ secrets.MONGODB_PROJECT_ID_NEW }} --output json
+        run: atlas clusters list --projectId ${{ secrets.MONGODB_PROJECT_ID_NEW }} --output json
 
       - name: Get connection string
         run: |
-          mongocli atlas clusters connectionStrings describe NewTest --output json
+          atlas clusters connectionStrings describe NewTest --output json

@@ -45,4 +45,4 @@ jobs:
 
       - name: Get connection string
         run: |
-          atlas clusters connectionStrings describe NewTest --output json
+          atlas cluster connectionString describe NewTest --output json

@@ -14,14 +14,33 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Set up MongoDB Atlas
-        uses: docker://mongo
-#        with:
-#          mongodb-uri: ${{ secrets.MONGODB_URI }}
+#        uses: docker://mongo
+##        with:
+##          mongodb-uri: ${{ secrets.MONGODB_URI }}
+        run: |
+          curl -OL https://downloads.mongodb.com/on-prem-mongodb/binaries/linux/mongocli-latest-linux-x86_64.tgz
+          tar -xzf mongocli-latest-linux-x86_64.tgz
+          sudo cp mongocli*/mongocli /usr/local/bin/
+
+      - name: Configure MongoDB CLI
+        run: |
+          mongocli config set accessProjectAndOrg true
+          mongocli config set projectID ${{ secrets.MONGODB_PROJECT_ID_NEW }}
+          mongocli config set publicAPIKey "${{ secrets.MONGODB_PUBLIC_API_KEY }}"
+          mongocli config set privateKey "${{ secrets.MONGODB_PRIVATE_KEY }}"
+          mongocli config set serviceConnectionURI "${{ secrets.MONGODB_URI_NEW }}"
 
       - name: Create database
-        run: |
-          mongo ${{ secrets.MONGODB_URI_NEW }} --eval "db.createDatabase('test')"
+        run: mongocli atlas cluster db create --clusterName Test --dbName mydatabase
 
       - name: Verify database creation
-        run: |
-          mongo ${{ secrets.MONGODB_URI_NEW }} --eval "db.adminCommand('listDatabases')"
+        run: mongocli atlas cluster db list --clusterName Test
+
+
+#      - name: Create database
+#        run: |
+#          mongo ${{ secrets.MONGODB_URI_NEW }} --eval "db.createDatabase('test')"
+#
+#      - name: Verify database creation
+#        run: |
+#          mongo ${{ secrets.MONGODB_URI_NEW }} --eval "db.adminCommand('listDatabases')"

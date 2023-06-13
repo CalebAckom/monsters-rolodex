@@ -32,6 +32,7 @@ jobs:
 
       - name: Create Project
         run: |
+          mongocli auth whoami
           mongocli iam projects create caleb --orgId ${{ secrets.MONGODB_ORG_ID }} --output json
           # Save the output of the command
           projectId=$(cat project.json | jq -r .projectId)

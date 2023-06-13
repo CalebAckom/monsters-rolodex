@@ -1,0 +1,27 @@
+name: MongoDB Atlas
+
+on:
+  push:
+    branches:
+      - create-mongodb
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up MongoDB Atlas
+        uses: mongodb-js/setup-mongodb@v1
+        with:
+          mongodb-uri: ${{ secrets.MONGODB_URI }}
+
+      - name: Create database
+        run: |
+          mongo ${{ MONGODB_URI }} --eval "db.createDatabase('test')"
+
+      - name: Verify database creation
+        run: |
+          mongo ${{ MONGODB_URI }} --eval "db.adminCommand('listDatabases')"

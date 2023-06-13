@@ -20,8 +20,8 @@ jobs:
 
       - name: Create database
         run: |
-          mongo ${{ secrets.MONGODB_URI }} --eval "db.createDatabase('test')"
+          mongo ${{ secrets.MONGODB_URI_NEW }} --eval "db.createDatabase('test')"
 
       - name: Verify database creation
         run: |
-          mongo ${{ secrets.MONGODB_URI }} --eval "db.adminCommand('listDatabases')"
+          mongo ${{ secrets.MONGODB_URI_NEW }} --eval "db.adminCommand('listDatabases')"

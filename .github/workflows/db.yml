@@ -42,3 +42,7 @@ jobs:
 
       - name: Verify database creation
         run: mongocli atlas clusters list --projectId ${{ secrets.MONGODB_PROJECT_ID_NEW }} --output json
+
+      - name: Get connection string
+        run: |
+          mongocli atlas clusters connectionStrings describe NewTest --output json

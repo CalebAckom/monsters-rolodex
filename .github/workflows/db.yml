@@ -15,8 +15,8 @@ jobs:
 
       - name: Set up MongoDB Atlas
         uses: docker://mongo
-        with:
-          mongodb-uri: ${{ secrets.MONGODB_URI }}
+#        with:
+#          mongodb-uri: ${{ secrets.MONGODB_URI }}
 
       - name: Create database
         run: |

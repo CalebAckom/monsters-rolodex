@@ -33,6 +33,12 @@ jobs:
           mongocli config set private_api_key "${{ secrets.MONGODB_PRIVATE_KEY }}"
 #          mongocli config set serviceConnectionURI "${{ secrets.MONGODB_URI_NEW }}"
 
+      - name: Create Project
+        run: |
+          mongocli iam projects create --orgId ${{ secrets.MONGODB_ORG_ID }} --output json
+          # Save the output of the command
+          projectId=$(cat project.json | jq -r .projectId)
+
       - name: Create database
         run: mongocli atlas cluster create NewTest --projectId ${{ secrets.MONGODB_PROJECT_ID_NEW }} --provider AWS --region US_EAST_1 --tier M0
 

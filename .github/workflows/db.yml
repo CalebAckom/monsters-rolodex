@@ -27,7 +27,6 @@ jobs:
 
       - name: Configure MongoDB CLI
         run: |
-          mongocli config set accessProjectAndOrg true
           mongocli config set projectID ${{ secrets.MONGODB_PROJECT_ID_NEW }}
           mongocli config set publicAPIKey "${{ secrets.MONGODB_PUBLIC_API_KEY }}"
           mongocli config set privateKey "${{ secrets.MONGODB_PRIVATE_KEY }}"

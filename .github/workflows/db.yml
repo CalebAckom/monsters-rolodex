@@ -34,10 +34,10 @@ jobs:
 #          mongocli config set serviceConnectionURI "${{ secrets.MONGODB_URI_NEW }}"
 
       - name: Create database
-        run: mongocli atlas cluster db create --clusterName Test --dbName mydatabase
+        run: mongocli atlas cluster create NewTest --projectId ${{ secrets.MONGODB_PROJECT_ID_NEW }}
 
       - name: Verify database creation
-        run: mongocli atlas cluster db list --clusterName Test
+        run: mongocli atlas clusters list --projectId ${{ secrets.MONGODB_PROJECT_ID_NEW }} --output json
 
 
 #      - name: Create database

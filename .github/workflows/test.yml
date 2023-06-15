@@ -1,6 +1,7 @@
 name: Deploy Env
 
-on: pull_request
+on:
+  workflow_call
 
 jobs:
   build:
@@ -8,14 +9,14 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Extract branch name
         id: branch-name
         run: |
-          branch=$(git branch --show-current)
-          echo "::set-output name=branch::$branch"
+          
+          echo "::set-output branch={branch}=${{ github.event.pull_request.head.ref }}"
 
       - name: Print branch name
-        run: echo "Branch:${{ steps.branch-name.outputs.branch }}"
+        run: echo "Branch:${{ github.event.pull_request.head.ref }}"
         

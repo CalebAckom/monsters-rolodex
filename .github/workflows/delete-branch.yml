@@ -1,0 +1,25 @@
+name: Delete branch after PR
+on:
+  pull_request:
+    types:
+      - closed
+
+env:
+  TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
+
+jobs:
+  delete-branch:
+    if: github.head_ref != 'develop' && github.head_ref != 'staging'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Delete branch
+        run: |
+          git config --global user.name "Caleb Poku Ackom"
+          git config --global user.email "caleb.ackom@amalitech.com"
+          git config --global credential.helper store
+          git config --global credential.helper 'cache --timeout=3600'
+          git config --global credential.username ${{ github.actor }}
+          git config --global credential.password ${{ env.TOKEN }}
+          git push origin -d ${{ github.head_ref }}

@@ -58,8 +58,8 @@ pipeline {
         stage('Deploy') {
             steps {
                 sshagent (credentials: ['my-name']) {
-                    sh 'ssh ubuntu@ec2-54-246-26-146.eu-west-1.compute.amazonaws.com docker pull calebackom/monsters-rolodex'
-                    sh 'ssh ubuntu@ec2-54-246-26-146.eu-west-1.compute.amazonaws.com docker run -d -p 3000:3000 calebackom/monsters-rolodex'
+                    sh 'ssh -i "/home/ubuntu/.ssh/caleb.pem" ubuntu@ec2-54-246-26-146.eu-west-1.compute.amazonaws.com docker pull calebackom/monsters-rolodex'
+                    sh 'ssh -i "/home/ubuntu/.ssh/caleb.pem" ubuntu@ec2-54-246-26-146.eu-west-1.compute.amazonaws.com docker run -d -p 3000:3000 calebackom/monsters-rolodex'
                 }
             }
         }

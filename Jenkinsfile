@@ -61,14 +61,7 @@ pipeline {
                     sh 'scp -o StrictHostKeyChecking=no deploy.sh ubuntu@ec2-54-246-26-146.eu-west-1.compute.amazonaws.com:~/'
                     sh 'ssh ubuntu@ec2-54-246-26-146.eu-west-1.compute.amazonaws.com "chmod +x deploy.sh"'
                     sh 'ssh ubuntu@ec2-54-246-26-146.eu-west-1.compute.amazonaws.com ./deploy.sh'
-//                     sh 'ssh -o StrictHostKeyChecking=no ubuntu@ec2-54-246-26-146.eu-west-1.compute.amazonaws.com docker pull calebackom/monsters-rolodex'
-//                     sh 'ssh -i "/home/ubuntu/.ssh/caleb.pem" ubuntu@ec2-54-246-26-146.eu-west-1.compute.amazonaws.com docker run -d -p 3000:3000 calebackom/monsters-rolodex'
                 }
-//                 script {
-//                     sh 'scp -o StrictHostKeyChecking=no deploy.sh ubuntu@ec2-54-246-26-146.eu-west-1.compute.amazonaws.com:~/'
-//                     sh 'ssh ubuntu@ec2-54-246-26-146.eu-west-1.compute.amazonaws.com "chmod +x deploy.sh"'
-//                     sh 'ssh ubuntu@ec2-54-246-26-146.eu-west-1.compute.amazonaws.com ./deploy.sh'
-//                 }
             }
         }
     }

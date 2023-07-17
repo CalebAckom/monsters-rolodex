@@ -1,5 +1,8 @@
 name: Delete Branch After Merge
-on: push
+on:
+  push:
+    branches:
+      - new-main
 
 jobs:
   delete-branch:

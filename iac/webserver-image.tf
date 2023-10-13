@@ -5,5 +5,9 @@ resource "docker_image" "monsters-rolodex" {
     context = "./../"
     dockerfile = "Dockerfile"
     tag = [var.app]
+    no_cache =  true
+
   }
+
+  force_remove = true
 }

@@ -1,20 +1,29 @@
-# Pulling node image as base OS
-FROM node:16-alpine
+# Use an official Node.js runtime as the base image
+FROM node:16-alpine AS build
 
-# Setting working directory
+# Set the working directory in the container
 WORKDIR /app
 
-# Copying packages
+# Copy the package.json and package-lock.json files
 COPY package*.json ./
 
-# Installing packages
+# Install the project dependencies
 RUN npm install
 
-# Copying project
+# Copy the rest of the project files
 COPY . .
 
-# Exposing port
+# Build the project for production
+RUN npm run build
+
+# Building for production
+# Use nginx official image
+FROM  nginx:stable-alpine-slim AS production
+
+COPY ./nginx/nginx.conf /etc/nginx/conf.d/default.conf
+
+COPY --from=build /app/build /usr/share/nginx/html
+
 EXPOSE 3000
 
-# Running the project
-CMD [ "npm", "start" ]
+CMD ["nginx", "-g", "daemon off;"]

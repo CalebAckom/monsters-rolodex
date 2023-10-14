@@ -1,0 +1,23 @@
+name: Sanitize Branch
+
+on: push
+
+jobs:
+  sanitize-branch:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Sanitize Branch Name
+        id: sanitized-branch
+        run: |
+          branch_name=${GITHUB_REF#refs/heads/}
+          sanitized_name=$(echo $branch_name | sed -e 's/[^a-zA-Z0-9-]/-/g')
+          echo "Sanitized branch name: $sanitized_name"
+          echo "::set-output name=sanitized_branch::'$sanitized_name/tabiya'"
+
+      - name: Print name
+        run: |
+          echo "${{ steps.sanitized-branch.outputs.sanitized_branch }}"

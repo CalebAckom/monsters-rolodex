@@ -1,0 +1,16 @@
+---
+- name: Start Docker Container
+  hosts:  web_server
+  become: yes
+  gather_facts: False
+  tasks:
+    - name: Copy Directory
+      ansible.builtin.copy:
+        src:  /home/caleb/Desktop/Workspace/Personal/React/monsters-rolodex/
+        dest: /home/projects/monsters-rolodex
+
+    - name: Build and Start Container
+      ansible.builtin.command:
+        cmd:  docker-compose -f /home/projects/monsters-rolodex/docker-compose.yml
+      args:
+        chdir:  /home/projects/monsters-rolodex

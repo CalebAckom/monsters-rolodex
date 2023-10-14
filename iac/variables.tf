@@ -5,5 +5,5 @@ variable "app" {
 
 variable "external-port" {
   type = number
-  default = 4000
+  default = 3000
 }

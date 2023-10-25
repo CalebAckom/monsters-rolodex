@@ -1,0 +1,13 @@
+name: Lock all branches
+
+on:
+  workflow_dispatch
+
+jobs:
+  lock-all-branches:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: github/lock@v2.1.1
+        id: lock
+        with:
+          branches: "*"

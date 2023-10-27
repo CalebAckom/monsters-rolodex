@@ -6,4 +6,4 @@ on:
 jobs:
   environment-setup:
     name: Environment setup
-    uses: ./github/workflows/setup.yml
+    uses: ./.github/workflows/setup.yml

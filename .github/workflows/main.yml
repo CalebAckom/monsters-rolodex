@@ -1,0 +1,8 @@
+name: Main CI
+
+on:
+  push
+
+jobs:
+  environment-setup:
+    uses: ./github/workflows/setup.yml

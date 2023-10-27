@@ -1,0 +1,13 @@
+name: Deploy Infrastructure
+
+on:
+  workflow_call:
+
+jobs:
+  provisioning:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Initialize and Apply
+        run: |
+          terraform init
+          terraform apply -auto-approve

@@ -39,4 +39,6 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
           script: |
-            ./deploy.sh
+            docker pull calebackom/monsters-rolodex:latest
+            docker ps -q --filter ancestor=calebackom/monsters-rolodex | xargs -r docker stop
+            docker run -d -p 3000:3000 calebackom/monsters-rolodex

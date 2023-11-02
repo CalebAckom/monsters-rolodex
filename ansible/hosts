@@ -1,6 +1,6 @@
 [web_server]
-<ip-address>
+44.211.154.55
 
 [web_server:vars]
-ansible_ssh_private_key_file=/home/caleb/Desktop/AWS/Pem Keys/ansible.pem
+ansible_ssh_private_key_file=/home/caleb/Desktop/AWS/Pem Keys/picco.pem
 ansible_user=ubuntu

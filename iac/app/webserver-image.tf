@@ -2,7 +2,7 @@ resource "docker_image" "monsters-rolodex" {
   name = "monsters-rolodex:latest"
 
   build {
-    context = "./../"
+    context = "./../../"
     dockerfile = "Dockerfile"
     tag = [var.app]
     no_cache =  true

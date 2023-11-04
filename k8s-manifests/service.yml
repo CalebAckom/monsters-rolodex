@@ -5,8 +5,10 @@ metadata:
   labels:
     run: monsters-rolodex
 spec:
+  type:  LoadBalancer
   ports:
     - port: 3000
+      targetPort:  3000
       protocol: TCP
   selector:
-    run: monsters-rolodex
+    app: monsters-rolodex

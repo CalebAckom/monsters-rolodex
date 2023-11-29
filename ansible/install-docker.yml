@@ -26,6 +26,12 @@
         name: docker-ce
         state: latest
 
+    - name: Add User to Docker Group
+      user:
+        name: "{{ ansible_user }}"
+        groups: docker
+        append: yes
+
     - name: Install Docker Compose
       apt:
         name: docker-compose

@@ -25,5 +25,5 @@ jobs:
           port_base_url: "https://api.port.io"
           config: |
             jira_host: "https://caleb-poku-ackom.atlassian.net"
-            atlassian_user_email: ${{ secrets.ATLASSIIANUSEREMAIL }}
+            atlassian_user_email: ${{ secrets.ATLASSIANUSEREMAIL }}
             atlassian_user_token: ${{ secrets.ATLASSIANUSERTOKEN }}

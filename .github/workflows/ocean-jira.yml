@@ -9,7 +9,7 @@ name: Run Jira Integration
 on:
   workflow_dispatch:
   schedule:
-    - cron: '20 */1 * * *' # Determines the scheduled interval for this workflow. This example runs every hour.
+    - cron: '0 */1 * * *' # Determines the scheduled interval for this workflow. This example runs every hour.
 
 jobs:
   run-integration:

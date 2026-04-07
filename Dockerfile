@@ -8,7 +8,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Install the project dependencies
-RUN npm install
+RUN npm ci
 
 # Copy the rest of the project files
 COPY . .
@@ -18,7 +18,7 @@ RUN npm run build
 
 # Building for production
 # Use nginx official image
-FROM  nginx:stable-alpine-slim AS production
+FROM  nginx:stable-alpine-slim@sha256:b33eedfdf089be1f83759ced27b4deec5b6f1b6fc2a6819ebce0ae351a4406e5 AS production
 
 COPY ./nginx/nginx.conf /etc/nginx/conf.d/default.conf
 

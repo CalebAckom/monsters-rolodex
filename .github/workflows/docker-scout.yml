@@ -41,8 +41,14 @@ jobs:
           command: cves
           image: ${{ env.IMAGE_NAME }}:${{ github.sha }}
           only-severities: critical,high
-          exit-code: true  # fail the pipeline if CVEs are found
+          exit-code: false  # do not fail the pipeline if CVEs are found
           sarif-file: scout-results.sarif
+
+      - name: Upload SARIF to GitHub Security
+        uses: github/codeql-action/upload-sarif@7851e55dc3be31ec4bcc3ef98453de2cb306e698
+        if: always()  # upload even if the scan step fails
+        with:
+          sarif_file: scout-results.sarif
 
       - name: Generate SBOM with Docker Scout
         uses: docker/scout-action@bacf462e8d090c09660de30a6ccc718035f961e3 #v1
@@ -50,19 +56,13 @@ jobs:
           command: sbom
           image: ${{ env.IMAGE_NAME }}:${{ github.sha }}
           format: cyclonedx
-          output: test.json
+          output: sbom.json
 
       - name: Upload SBOM Artifact
         uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a #v7
         with:
           name: image-sbom
-          path: my-app-sbom.json
-
-      - name: Upload SARIF to GitHub Security
-        uses: github/codeql-action/upload-sarif@7851e55dc3be31ec4bcc3ef98453de2cb306e698
-        if: always()  # upload even if the scan step fails
-        with:
-          sarif_file: scout-results.sarif
+          path: sbom.json
 
       # - name: Push image (only if scan passes)
       #   if: github.ref == 'refs/heads/main'

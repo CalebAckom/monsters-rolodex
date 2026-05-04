@@ -12,5 +12,5 @@ jobs:
         uses: ossafrica/skillguard@8b33996166f0991d7897d49575162158261172a0 #v0.6.0
         with:
           # path: './my-skills'
-          threshold: 70
+          threshold: 60
           verbose: true

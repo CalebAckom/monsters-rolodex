@@ -1,0 +1,15 @@
+name: SkillGuard Scan
+on: [push, pull_request]
+
+jobs:
+  security_scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run SkillGuard Security Scan
+        uses: ossafrica/skillguard-action@v1
+        with:
+          # path: './my-skills'
+          threshold: 70

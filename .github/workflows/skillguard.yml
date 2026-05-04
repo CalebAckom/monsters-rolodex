@@ -13,3 +13,4 @@ jobs:
         with:
           # path: './my-skills'
           threshold: 70
+          verbose: true
